@@ -4,6 +4,6 @@ this repository is a place that i'll put some sort algorithms implemented with p
 
 # Algorithms
 
-|                                                           |     |     |
-| --------------------------------------------------------- | :-: | --: |
-| [Bubble](https://github.com/messyoxd/PO/Bubble/Bubble.py) |     |     |
+|                                                                       |     |     |
+| --------------------------------------------------------------------- | :-: | --: |
+| [Bubble](https://github.com/messyoxd/PO/blob/master/Bubble/Bubble.py) |     |     |
