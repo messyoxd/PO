@@ -6,4 +6,5 @@ in [Test.py](./Test.py) there's a script for a perfomance test.
 
 here's a example of the test's result:
 
-![result](./BubbleSort.png)
+![result](./BubbleSortNaoParalelizado.png)
+![result](./BubbleSortParalelizado.png)
