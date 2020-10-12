@@ -1,6 +1,7 @@
 class Bubble:
 
-    def crescent_sort(self, sortable_list, size) -> list:
+    @staticmethod
+    def crescent_sort(sortable_list, size) -> list:
         """
         Parameter: A list "sortable_list" with elements that have the same type
             and a int "size" with the number of elements of the list

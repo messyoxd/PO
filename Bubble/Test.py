@@ -4,7 +4,7 @@ import time
 import matplotlib.pyplot as plt
 from concurrent.futures import ProcessPoolExecutor
 
-from Bubble.Bubble import Bubble
+from Bubble import Bubble
 
 
 class SortAlgorithmTester:
@@ -28,19 +28,20 @@ class SortAlgorithmTester:
             futures.append(pool.submit(
                 self.time_it, algorithms[i], algorithms_names[i], random_list, instance_sizes[i]))
 
-        width = 0.35       # the width of the bars: can also be len(x) sequence
+        width = 0.35
 
         fig, ax = plt.subplots()
 
         for i in range(len(futures)):
             result = futures[i].result()
-            algorithm = list( result.keys() )[0]
+            algorithm = list(result.keys())[0]
             inst_size = list(result.values())[0][0]
-            time      = list(result.values())[0][1]
-            ax.bar(str(i), time, width,
-                   label=f"{algorithm} com {inst_size} elemento(s)")
+            time = list(result.values())[0][1]
+            ax.bar(str(inst_size), time, width,
+                   label=f"{algorithm} com %.3f segundo(s)" % time)
 
         ax.set_ylabel('Tempo de computacao(segundos)')
+        ax.set_xlabel('Tamanho da instancia')
         ax.set_title('Tempo de computacao dos algoritmos')
         ax.legend()
 
@@ -52,14 +53,32 @@ if __name__ == "__main__":
     tester.test(
         [
             Bubble.crescent_sort,
+            Bubble.crescent_sort,
+            Bubble.crescent_sort,
+            Bubble.crescent_sort,
+            Bubble.crescent_sort,
+            Bubble.crescent_sort,
+            Bubble.crescent_sort,
             Bubble.crescent_sort
         ],
         [
             "Bubble",
-            "Bubble"
+            "Bubble",
+            "Bubble",
+            "Bubble",
+            "Bubble",
+            "Bubble",
+            "Bubble",
+            "Bubble",
         ],
         [
             1000,
             2000,
+            3000,
+            4000,
+            5000,
+            8000,
+            11000,
+            15000
         ]
     )
