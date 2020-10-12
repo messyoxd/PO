@@ -145,6 +145,6 @@ if __name__ == "__main__":
             (worst_case_test_results, "Pior Caso")
         ],
         "Comparacao Bubblesort",
-        "Tamanho da instancia",
-        "Tempo de computacao dos algoritmos"
+        "Tempo de computacao (segundos)",
+        "Tamanho da instancia"
     )
