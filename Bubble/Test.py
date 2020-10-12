@@ -21,14 +21,14 @@ if __name__ == "__main__":
             start = time.time()        
             random_test_results = tester.random_test(
                 [
-                    Bubble.crescent_sort,
-                    Bubble.crescent_sort,
-                    Bubble.crescent_sort,
-                    Bubble.crescent_sort,
-                    Bubble.crescent_sort,
-                    Bubble.crescent_sort,
-                    Bubble.crescent_sort,
-                    Bubble.crescent_sort
+                    Bubble.crescent_sort_with_flag,
+                    Bubble.crescent_sort_with_flag,
+                    Bubble.crescent_sort_with_flag,
+                    Bubble.crescent_sort_with_flag,
+                    Bubble.crescent_sort_with_flag,
+                    Bubble.crescent_sort_with_flag,
+                    Bubble.crescent_sort_with_flag,
+                    Bubble.crescent_sort_with_flag
                 ],
                 [
                     "Bubble",
@@ -54,14 +54,14 @@ if __name__ == "__main__":
 
             worst_case_test_results = tester.worst_case_test(
                 [
-                    Bubble.crescent_sort,
-                    Bubble.crescent_sort,
-                    Bubble.crescent_sort,
-                    Bubble.crescent_sort,
-                    Bubble.crescent_sort,
-                    Bubble.crescent_sort,
-                    Bubble.crescent_sort,
-                    Bubble.crescent_sort
+                    Bubble.crescent_sort_with_flag,
+                    Bubble.crescent_sort_with_flag,
+                    Bubble.crescent_sort_with_flag,
+                    Bubble.crescent_sort_with_flag,
+                    Bubble.crescent_sort_with_flag,
+                    Bubble.crescent_sort_with_flag,
+                    Bubble.crescent_sort_with_flag,
+                    Bubble.crescent_sort_with_flag
                 ],
                 [
                     "Bubble",
@@ -101,14 +101,14 @@ if __name__ == "__main__":
             start = time.time()  
             random_test_results = tester.random_test(
                 [
-                    Bubble.crescent_sort,
-                    Bubble.crescent_sort,
-                    Bubble.crescent_sort,
-                    Bubble.crescent_sort,
-                    Bubble.crescent_sort,
-                    Bubble.crescent_sort,
-                    Bubble.crescent_sort,
-                    Bubble.crescent_sort
+                    Bubble.crescent_sort_with_flag,
+                    Bubble.crescent_sort_with_flag,
+                    Bubble.crescent_sort_with_flag,
+                    Bubble.crescent_sort_with_flag,
+                    Bubble.crescent_sort_with_flag,
+                    Bubble.crescent_sort_with_flag,
+                    Bubble.crescent_sort_with_flag,
+                    Bubble.crescent_sort_with_flag
                 ],
                 [
                     "Bubble",
@@ -133,14 +133,14 @@ if __name__ == "__main__":
             )
             worst_case_test_results = tester.worst_case_test(
                 [
-                    Bubble.crescent_sort,
-                    Bubble.crescent_sort,
-                    Bubble.crescent_sort,
-                    Bubble.crescent_sort,
-                    Bubble.crescent_sort,
-                    Bubble.crescent_sort,
-                    Bubble.crescent_sort,
-                    Bubble.crescent_sort
+                    Bubble.crescent_sort_with_flag,
+                    Bubble.crescent_sort_with_flag,
+                    Bubble.crescent_sort_with_flag,
+                    Bubble.crescent_sort_with_flag,
+                    Bubble.crescent_sort_with_flag,
+                    Bubble.crescent_sort_with_flag,
+                    Bubble.crescent_sort_with_flag,
+                    Bubble.crescent_sort_with_flag
                 ],
                 [
                     "Bubble",
