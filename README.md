@@ -23,4 +23,4 @@ pip install -r requirements.txt
 
 |                          Algorithms                                             |
 | --------------------------------------------------------------------- |
-| [Bubble Sort](./Bubble/Bubble.py) |
+| [Bubble Sort](./Bubble) |
