@@ -25,10 +25,10 @@ class Bubble:
             and a int "size" with the number of elements of the list
         Return: A crescent sorted list 
         Brief: 
-            Funciona como o bubble sort crescente, mas com um 
-          acréscimo de uma flag. A flag faz com que Caso nenhum 
-          swap tenha ocorrido a lista já estará ordenada e o 
-          algoritmo poderá parar. 
+                Funciona como o bubble sort crescente, mas com um 
+            acréscimo de uma flag. A flag faz com que Caso nenhum 
+            swap tenha ocorrido a lista já estará ordenada e o 
+            algoritmo poderá parar. 
         """
         i = 0
         flag = True
