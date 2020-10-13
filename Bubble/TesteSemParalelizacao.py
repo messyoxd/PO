@@ -78,25 +78,11 @@ if __name__ == "__main__":
     tester = NotParallelizedSortAlgorithmTester()
     random_test_results = tester.random_test(
         [
-            Bubble.crescent_sort,
-            Bubble.crescent_sort,
-            Bubble.crescent_sort,
-            Bubble.crescent_sort,
-            Bubble.crescent_sort,
-            Bubble.crescent_sort,
-            Bubble.crescent_sort,
-            Bubble.crescent_sort
-        ],
+            Bubble.crescent_sort_with_flag
+        ]*8,
         [
-            "Bubble",
-            "Bubble",
-            "Bubble",
-            "Bubble",
-            "Bubble",
-            "Bubble",
-            "Bubble",
-            "Bubble",
-        ],
+            "Bubble"
+        ]*8,
         [
             1000,
             2000,
@@ -110,25 +96,11 @@ if __name__ == "__main__":
     )
     worst_case_test_results = tester.worst_case_test(
         [
-            Bubble.crescent_sort,
-            Bubble.crescent_sort,
-            Bubble.crescent_sort,
-            Bubble.crescent_sort,
-            Bubble.crescent_sort,
-            Bubble.crescent_sort,
-            Bubble.crescent_sort,
-            Bubble.crescent_sort
-        ],
+            Bubble.crescent_sort_with_flag
+        ]*8,
         [
-            "Bubble",
-            "Bubble",
-            "Bubble",
-            "Bubble",
-            "Bubble",
-            "Bubble",
-            "Bubble",
-            "Bubble",
-        ],
+            "Bubble"
+        ]*8,
         [
             1000,
             2000,
