@@ -44,6 +44,10 @@ class Bubble:
 
     @staticmethod
     def worst_case(size):
+        """
+            There's no worst case for selection sort. 
+            It will always be Θ(n2)
+        """
         return list(range(size))[::-1]
 
 

@@ -19,6 +19,19 @@ class Insertion:
 
     @staticmethod
     def direct_crescent_insertion(sortable_list, size) -> list:
+        """
+        Parameter: A list "sortable_list" with elements that have the same type
+            and a int "size" with the number of elements of the list
+        Return: A crescent sorted list 
+        Brief: 
+                o algoritmo imagina a lista à ser ordenada como dividida
+                em duas partes: A esquerda, com elementos em ordem crescente
+                e de tamanho p; A direita, com os elementos em ordem diversa
+                e de tamanho q. O algoritmo usa um pivo para que à cada iteração 
+                do loop interno o primeiro elemento da parte direita seja movido
+                para a parte esquerda, da direita para a esquerda, de modo que seja 
+                colocado em ordem na parte esquerda.
+        """
         for i in range(1, size):
             pivo = sortable_list[i]
             j = i - 1
@@ -34,8 +47,8 @@ class Insertion:
 
 
 if __name__ == "__main__":
-    s = 20
+    s = 5
     x = list(range(s))[::-1]
-    random.shuffle(x)
+    # random.shuffle(x)
     print(x)
     print(Insertion.direct_crescent_insertion(x, s))
