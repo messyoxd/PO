@@ -24,3 +24,12 @@ pip install -r requirements.txt
 |                          Algorithms                                             |
 | --------------------------------------------------------------------- |
 | [Bubble Sort](./Bubble) |
+| [Insertion Sort](./Insertion) |
+
+# Comparing the algorithms
+
+[Main.py](./Main.py) has a script for comparing the algorithms. It will produce some images
+like:
+![result](./ComparacaoListaEmbaralhadaSingleThread.png)
+![result](./ComparacaoListaEmbaralhada4Thread(s).png)
+![result](./ComparacaoListaEmbaralhada8Thread(s).png)

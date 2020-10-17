@@ -1,5 +1,5 @@
 
-from Bubble import Bubble
+from Insertion import Insertion
 from concurrent.futures import ProcessPoolExecutor
 import matplotlib.pyplot as plt
 import time
@@ -107,12 +107,12 @@ class SortAlgorithmTester:
             for i in range(len(data_list)):
                 self.plot_in_lines_threaded(data_list[i][0], ax, data_list[i][1])
             ax.legend()
-            fig.savefig(f'BubbleSort{workers}Threads.png')
+            fig.savefig(f'InsertionSort{workers}Threads.png')
         else:
             for i in range(len(data_list)):
                 self.plot_in_lines(data_list[i][0], ax, data_list[i][1])
             ax.legend()
-            fig.savefig(f'BubbleSortSingleThread.png')
+            fig.savefig(f'InsertionSortSingleThread.png')
         ######################################
 
 
@@ -136,10 +136,10 @@ if __name__ == "__main__":
             start = time.time()
             random_test_results = tester.random_test_threaded(
                 [
-                    Bubble.crescent_sort_with_flag
+                    Insertion.direct_crescent_insertion
                 ]*8,
                 [
-                    "Bubble"
+                    "Insertion"
                 ]*8,
                 [
                     1000,
@@ -156,10 +156,10 @@ if __name__ == "__main__":
 
             worst_case_test_results = tester.worst_case_test_threaded(
                 [
-                    Bubble.crescent_sort_with_flag
+                    Insertion.direct_crescent_insertion
                 ]*8,
                 [
-                    "Bubble"
+                    "Insertion"
                 ]*8,
                 [
                     1000,
@@ -179,7 +179,7 @@ if __name__ == "__main__":
                     (random_test_results, "Aleatorio"),
                     (worst_case_test_results, "Pior Caso")
                 ],
-                f"Comparacao Bubblesort MultiThreaded ({workers} threads)",
+                f"Comparacao InsertionSort MultiThreaded ({workers} threads)",
                 "Tempo de computacao(segundos)",
                 "Tamanho da instancia",
                 workers
@@ -192,10 +192,10 @@ if __name__ == "__main__":
             start = time.time()
             random_test_results = tester.random_test(
                 [
-                    Bubble.crescent_sort_with_flag
+                    Insertion.direct_crescent_insertion
                 ]*8,
                 [
-                    "Bubble"
+                    "Insertion"
                 ]*8,
                 [
                     1000,
@@ -210,10 +210,10 @@ if __name__ == "__main__":
             )
             worst_case_test_results = tester.worst_case_test(
                 [
-                    Bubble.crescent_sort_with_flag
+                    Insertion.direct_crescent_insertion
                 ]*8,
                 [
-                    "Bubble"
+                    "Insertion"
                 ]*8,
                 [
                     1000,
@@ -231,8 +231,8 @@ if __name__ == "__main__":
                     (random_test_results, "Aleatorio"),
                     (worst_case_test_results, "Pior Caso")
                 ],
-                "Comparacao Bubblesort Single Thread",
-                "Tempo de computacao(segundos)",
+                "Comparacao InsertionSort Single Thread",
+                "Tempo de computacao (segundos)",
                 "Tamanho da instancia"
             )
             end = time.time()

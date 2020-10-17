@@ -42,6 +42,10 @@ class Bubble:
             i += 1
         return sortable_list
 
+    @staticmethod
+    def worst_case(size):
+        return list(range(size))[::-1]
+
 
 if __name__ == "__main__":
     bubble = Bubble()
