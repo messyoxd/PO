@@ -20,7 +20,7 @@ class SortAlgorithmTester:
         """
         O insertion sort não tem pior caso :(
         """
-        return random.shuffle(list(range(size)))
+        return list(range(size))[::-1]
 
     def time_it(self, algorithm, algorithm_name, random_list, instance_size, label=None) -> dict:
         start = time.time()
@@ -54,10 +54,10 @@ class SortAlgorithmTester:
         futures = []
         pool = ProcessPoolExecutor(max_workers=max_workers)
         for i in range(len(algorithms)):
-            random_list = self.worst_case_instance(
+            worst_case_list = self.worst_case_instance(
                 instance_sizes[i])
             futures.append(pool.submit(
-                self.time_it, algorithms[i], algorithms_names[i], random_list, instance_sizes[i]))
+                self.time_it, algorithms[i], algorithms_names[i], worst_case_list, instance_sizes[i]))
         return futures
         ######################################
 
@@ -65,11 +65,11 @@ class SortAlgorithmTester:
         ##### Cronometrar os algoritmos ######
         futures = []
         for i in range(len(algorithms)):
-            random_list = self.worst_case_instance(
+            worst_case_list = self.worst_case_instance(
                 instance_sizes[i])
             futures.append(
                 self.time_it(
-                    algorithms[i], algorithms_names[i], random_list, instance_sizes[i], "Pior Caso")
+                    algorithms[i], algorithms_names[i], worst_case_list, instance_sizes[i], "Pior Caso")
             )
         return futures
         ######################################
