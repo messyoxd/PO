@@ -7,6 +7,7 @@ from concurrent.futures import ProcessPoolExecutor
 from Bubble.Bubble import Bubble
 from Selection.Selection import Selection
 from Insertion.Insertion import Insertion
+from Shell.Shell import Shell
 
 
 class SortAlgorithmTester:
@@ -250,12 +251,13 @@ if __name__ == "__main__":
                         Bubble.crescent_sort,
                         Selection.crescent_selection,
                         Insertion.direct_crescent_insertion,
-
+                        Shell.crescent_shell
                     ],
                     [
                         "Bubble",
                         "Selection",
                         "Insertion",
+                        "Shell"
                     ],
                     [
                         1000,
@@ -274,12 +276,14 @@ if __name__ == "__main__":
                     [
                         Bubble.crescent_sort,
                         Selection.crescent_selection,
-                        Insertion.direct_crescent_insertion
+                        Insertion.direct_crescent_insertion,
+                        Shell.crescent_shell
                     ],
                     [
                         "Bubble",
                         "Selection",
-                        "Insertion"
+                        "Insertion",
+                        "Shell"
                     ],
                     [
                         1000,
@@ -308,12 +312,14 @@ if __name__ == "__main__":
                     [
                         Bubble.crescent_sort,
                         Selection.crescent_selection,
-                        Insertion.direct_crescent_insertion
+                        Insertion.direct_crescent_insertion,
+                        Shell.crescent_shell
                     ],
                     [
                         "Bubble",
                         "Selection",
-                        "Insertion"
+                        "Insertion",
+                        "Shell"
                     ],
                     [
                         1000,
@@ -332,12 +338,14 @@ if __name__ == "__main__":
                     [
                         Bubble.crescent_sort,
                         Selection.crescent_selection,
-                        Insertion.direct_crescent_insertion
+                        Insertion.direct_crescent_insertion,
+                        Shell.crescent_shell
                     ],
                     [
                         "Bubble",
                         "Selection",
-                        "Insertion"
+                        "Insertion",
+                        "Shell"
                     ],
                     [
                         1000,
@@ -352,7 +360,8 @@ if __name__ == "__main__":
                     [
                         Bubble.worst_case,
                         Selection.worst_case,
-                        Insertion.worst_case
+                        Insertion.worst_case,
+                        Shell.worst_case
                     ]
                 )
             end = time.time()
