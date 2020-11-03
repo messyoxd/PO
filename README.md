@@ -26,6 +26,7 @@ pip install -r requirements.txt
 | [Bubble Sort](./Bubble) |
 | [Selection Sort](./Selection) |
 | [Insertion Sort](./Insertion) |
+| [Shell Sort](./Shell) |
 
 # Comparing the algorithms
 
