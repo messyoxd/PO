@@ -13,20 +13,12 @@ class Merge():
 
         """
         if start < end:
-            if (start+end)%2 == 1:
-                if end - start == 1:
-                    middle = start
-                else:
-                    middle = ((start+end + 1)//2)
-            else:
-                middle = (start+end)//2
+            middle = (start+end)//2
             if start < middle:
-                sortable_list = Merge.crescent_sort(
-                    sortable_list, start, middle)
+                Merge.crescent_sort(sortable_list, start, middle)
             if middle + 1 < end:
-                sortable_list = Merge.crescent_sort(
-                    sortable_list, middle+1, end)
-            sortable_list = Merge.merge(sortable_list, start, middle, end)
+                Merge.crescent_sort(sortable_list, middle+1, end)
+            Merge.merge(sortable_list, start, middle, end)
         return sortable_list
 
     @staticmethod
@@ -53,12 +45,12 @@ class Merge():
                 sortable_list[end - middle + j] = sortable_list[j]
             for i in range(len(aux)):
                 sortable_list[i+start] = aux[i]
-        return sortable_list
+            return sortable_list
 
 
 if __name__ == "__main__":
     s = 20
     x = list(range(s))[::-1]
     random.shuffle(x)
-    print(x)
+    # print(x)
     print(Merge.crescent_sort(x, 0, len(x)-1))

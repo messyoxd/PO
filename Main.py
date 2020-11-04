@@ -8,7 +8,7 @@ from Bubble.Bubble import Bubble
 from Selection.Selection import Selection
 from Insertion.Insertion import Insertion
 from Shell.Shell import Shell
-
+from Quick.Quick import Quick
 
 class SortAlgorithmTester:
 
@@ -18,9 +18,14 @@ class SortAlgorithmTester:
         return x
 
     def time_it(self, algorithm, algorithm_name, random_list, instance_size, label=None) -> dict:
-        start = time.time()
-        algorithm(random_list, instance_size)
-        end = time.time()
+        if algorithm_name == "Quick":
+            start = time.time()
+            algorithm(random_list, 0, instance_size-1)
+            end = time.time()    
+        else:
+            start = time.time()
+            algorithm(random_list, instance_size)
+            end = time.time()
         if label:
             print(f"{label} -> elementos: {instance_size} segundos: %.3f" %
                   (end - start))
@@ -251,13 +256,15 @@ if __name__ == "__main__":
                         Bubble.crescent_sort,
                         Selection.crescent_selection,
                         Insertion.direct_crescent_insertion,
-                        Shell.crescent_shell
+                        Shell.crescent_shell,
+                        Quick.crescent_quick
                     ],
                     [
                         "Bubble",
                         "Selection",
                         "Insertion",
-                        "Shell"
+                        "Shell",
+                        "Quick"
                     ],
                     [
                         1000,
@@ -313,13 +320,15 @@ if __name__ == "__main__":
                         Bubble.crescent_sort,
                         Selection.crescent_selection,
                         Insertion.direct_crescent_insertion,
-                        Shell.crescent_shell
+                        Shell.crescent_shell,
+                        Quick.crescent_quick
                     ],
                     [
                         "Bubble",
                         "Selection",
                         "Insertion",
-                        "Shell"
+                        "Shell",
+                        "Quick"
                     ],
                     [
                         1000,
