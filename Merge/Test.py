@@ -1,5 +1,5 @@
 
-from Shell import Shell
+from Merge import Merge
 from concurrent.futures import ProcessPoolExecutor
 import matplotlib.pyplot as plt
 import time
@@ -17,12 +17,24 @@ class SortAlgorithmTester:
         return x
 
     def worst_case_instance(self, size) -> list:
+        """
+        Retorna uma lista decrescente de tamanho "size"
+        """
         return list(range(size))[::-1]
 
-    def time_it(self, algorithm, algorithm_name, random_list, instance_size, label=None) -> dict:
-        start = time.time()
-        algorithm(random_list, instance_size)
-        end = time.time()
+    def time_it(self, algorithm, algorithm_name, random_list, instance_size, parameters, label=None) -> dict:
+        if len(parameters) == 1:
+            start = time.time()
+            algorithm(random_list, parameters[0])
+            end = time.time()
+        elif len(parameters) == 2:
+            start = time.time()
+            algorithm(random_list, parameters[0], parameters[1])
+            end = time.time()
+        else:
+            start = time.time()
+            algorithm(random_list, parameters[0])
+            end = time.time()
         if label:
             print(f"{label} -> elementos: {instance_size} segundos: %.3f" %
                   (end - start))
@@ -47,7 +59,7 @@ class SortAlgorithmTester:
             y.append(list(result.values())[0][1])
         cv.plot(x, y, label=label)
 
-    def worst_case_test_threaded(self, algorithms, algorithms_names, instance_sizes, max_workers=None) -> list:
+    def worst_case_test_threaded(self, algorithms, algorithms_names, instance_sizes, parameters, max_workers=None) -> list:
         ##### Cronometrar os algoritmos ######
         futures = []
         pool = ProcessPoolExecutor(max_workers=max_workers)
@@ -55,45 +67,47 @@ class SortAlgorithmTester:
             random_list = self.worst_case_instance(
                 instance_sizes[i])
             futures.append(pool.submit(
-                self.time_it, algorithms[i], algorithms_names[i], random_list, instance_sizes[i]))
+                self.time_it, algorithms[i], algorithms_names[i], random_list, instance_sizes[i], parameters[i]))
         return futures
         ######################################
 
-    def worst_case_test(self, algorithms, algorithms_names, instance_sizes) -> list:
+    def worst_case_test(self, algorithms, algorithms_names, instance_sizes, parameters) -> list:
         ##### Cronometrar os algoritmos ######
         futures = []
         for i in range(len(algorithms)):
-            random_list = self.worst_case_instance(
+            worst = self.worst_case_instance(
                 instance_sizes[i])
             futures.append(
                 self.time_it(
-                    algorithms[i], algorithms_names[i], random_list, instance_sizes[i], "Pior Caso")
+                    algorithms[i], algorithms_names[i], worst, instance_sizes[i], parameters[i], "Pior Caso")
             )
         return futures
         ######################################
 
-    def random_test_threaded(self, algorithms, algorithms_names, instance_sizes, max_workers=None) -> list:
+    def random_test_threaded(self, algorithms, algorithms_names, instance_sizes, parameters, max_workers=None) -> list:
         ##### Cronometrar os algoritmos ######
         futures = []
         pool = ProcessPoolExecutor(max_workers=max_workers)
         for i in range(len(algorithms)):
             random_list = self.create_random_list(instance_sizes[i])
             futures.append(pool.submit(
-                self.time_it, algorithms[i], algorithms_names[i], random_list, instance_sizes[i]))
+                self.time_it, algorithms[i], algorithms_names[i], random_list, instance_sizes[i], parameters[i]))
         return futures
         ######################################
 
-    def random_test(self, algorithms, algorithms_names, instance_sizes) -> list:
+    def random_test(self, algorithms, algorithms_names, instance_sizes, parameters) -> list:
         ##### Cronometrar os algoritmos ######
         futures = []
         for i in range(len(algorithms)):
             random_list = self.create_random_list(instance_sizes[i])
             futures.append(
                 self.time_it(
-                    algorithms[i], algorithms_names[i], random_list, instance_sizes[i], "Aleatorio")
+                    algorithms[i], algorithms_names[i], random_list, instance_sizes[i], parameters[i], "Aleatorio")
             )
         return futures
         ######################################
+
+    
 
     def plot_data(self, data_list, title, ylabel, xlabel, workers=None) -> None:
         ###### Plotar os dados ###############
@@ -108,18 +122,16 @@ class SortAlgorithmTester:
                 self.plot_in_lines_threaded(
                     data_list[i][0], ax, data_list[i][1])
             ax.legend()
-            fig.savefig(f'InsertionSort{workers}Threads.png')
+            fig.savefig(f'MergeSort{workers}Threads.png')
         else:
             for i in range(len(data_list)):
                 self.plot_in_lines(data_list[i][0], ax, data_list[i][1])
             ax.legend()
-            fig.savefig(f'InsertionSortSingleThread.png')
+            fig.savefig(f'MergeSortSingleThread.png')
         ######################################
 
-
 def formater(x, pos):
-    return '{:1.0f}'.format(x*1)
-
+        return '{:1.0f}'.format(x*1)
 
 if __name__ == "__main__":
     if len(sys.argv) > 3 or len(sys.argv) < 2:
@@ -141,40 +153,19 @@ if __name__ == "__main__":
             start = time.time()
             random_test_results = tester.random_test_threaded(
                 [
-                    Shell.crescent_shell
-                ]*8,
+                    Merge.crescent_sort
+                ]*6,
                 [
-                    "Shell"
-                ]*8,
+                    "Merge"
+                ]*6,
+                [100000, 200000, 400000, 700000, 1000000, 5000000],
                 [
-                    1000,
-                    2000,
-                    3000,
-                    4000,
-                    5000,
-                    8000,
-                    11000,
-                    15000
-                ],
-                workers
-            )
-
-            worst_case_test_results = tester.worst_case_test_threaded(
-                [
-                    Shell.crescent_shell
-                ]*8,
-                [
-                    "Shell"
-                ]*8,
-                [
-                    1000,
-                    2000,
-                    3000,
-                    4000,
-                    5000,
-                    8000,
-                    11000,
-                    15000
+                    [0, 100000-1],
+                    [0, 200000-1],
+                    [0, 400000-1],
+                    [0, 700000-1],
+                    [0, 1000000-1],
+                    [0, 5000000-1],
                 ],
                 workers
             )
@@ -182,9 +173,8 @@ if __name__ == "__main__":
             tester.plot_data(
                 [
                     (random_test_results, "Aleatorio"),
-                    (worst_case_test_results, "Pior Caso")
                 ],
-                f"Comparacao ShellSort MultiThreaded ({workers} threads)",
+                f"Comparacao MergeSort MultiThreaded ({workers} threads)",
                 "Tempo de computacao(segundos)",
                 "Tamanho da instancia",
                 workers
@@ -197,67 +187,27 @@ if __name__ == "__main__":
             start = time.time()
             random_test_results = tester.random_test(
                 [
-                    Shell.crescent_shell
-                ]*11,
+                    Merge.crescent_sort
+                ]*6,
                 [
-                    "Shell"
-                ]*11,
+                    "Merge"
+                ]*6,
+                [100000, 200000, 400000, 700000, 1000000, 5000000],
                 [
-                    500,
-                    1000,
-                    1500,
-                    1750,
-                    2000,
-                    3000,
-                    4000,
-                    5000,
-                    8000,
-                    11000,
-                    15000
+                    [0, 100000-1],
+                    [0, 200000-1],
+                    [0, 400000-1],
+                    [0, 700000-1],
+                    [0, 1000000-1],
+                    [0, 5000000-1],
                 ],
             )
-            ciura_random_test_results = tester.random_test(
-                [
-                    Shell.crescent_shell_ciura
-                ]*4,
-                [
-                    "Shell Ciura"
-                ]*4,
-                [
-                    500,
-                    1000,
-                    1500,
-                    1750,
-                ],
-            )
-            worst_case_test_results = tester.worst_case_test(
-                [
-                    Shell.crescent_shell
-                ]*11,
-                [
-                    "Shell"
-                ]*11,
-                [
-                    500,
-                    1000,
-                    1500,
-                    1750,
-                    2000,
-                    3000,
-                    4000,
-                    5000,
-                    8000,
-                    11000,
-                    15000
-                ],
-            )
+
             tester.plot_data(
                 [
                     (random_test_results, "Aleatorio"),
-                    (ciura_random_test_results, "Aleatorio Ciura"),
-                    (worst_case_test_results, "Pior Caso"),
                 ],
-                "Comparacao ShellSort Single Thread",
+                "Comparacao MergeSort Single Thread",
                 "Tempo de computacao (segundos)",
                 "Tamanho da instancia"
             )

@@ -27,7 +27,8 @@ class SortAlgorithmTester:
         algorithm(random_list, instance_size)
         end = time.time()
         if label:
-            print(f"{label} -> elementos: {instance_size} segundos: %.3f" % (end - start))
+            print(f"{label} -> elementos: {instance_size} segundos: %.3f" %
+                  (end - start))
         return {algorithm_name: [instance_size, end - start]}
 
     def plot_in_lines_threaded(self, data, cv, label) -> None:
@@ -39,7 +40,7 @@ class SortAlgorithmTester:
             y.append(list(result.values())[0][1])
             print(f"{label} -> elementos: {x[i]} segundos: %.3f" % y[i])
         cv.plot(x, y, label=label)
-    
+
     def plot_in_lines(self, data, cv, label) -> None:
         x = []
         y = []
@@ -100,12 +101,15 @@ class SortAlgorithmTester:
     def plot_data(self, data_list, title, ylabel, xlabel, workers=None) -> None:
         ###### Plotar os dados ###############
         fig, ax = plt.subplots()
+        ax.yaxis.set_major_formatter(formater)
+        ax.xaxis.set_major_formatter(formater)
         ax.set_ylabel(ylabel)
         ax.set_xlabel(xlabel)
         ax.set_title(title)
         if workers:
             for i in range(len(data_list)):
-                self.plot_in_lines_threaded(data_list[i][0], ax, data_list[i][1])
+                self.plot_in_lines_threaded(
+                    data_list[i][0], ax, data_list[i][1])
             ax.legend()
             fig.savefig(f'BubbleSort{workers}Threads.png')
         else:
@@ -114,6 +118,10 @@ class SortAlgorithmTester:
             ax.legend()
             fig.savefig(f'BubbleSortSingleThread.png')
         ######################################
+
+
+def formater(x, pos):
+    return '{:1.0f}'.format(x*1)
 
 
 if __name__ == "__main__":

@@ -40,7 +40,7 @@ class Merge():
             else:
                 aux.append(sortable_list[j])
                 j += 1
-        if i <= middle:
+        if i <= middle+1:
             for j in range(middle, i-1, -1):
                 sortable_list[end - middle + j] = sortable_list[j]
             for i in range(len(aux)):
@@ -49,8 +49,9 @@ class Merge():
 
 
 if __name__ == "__main__":
-    s = 20
+    s = 9
     x = list(range(s))[::-1]
     random.shuffle(x)
-    # print(x)
+    # x = [3, 1, 2, 0, 4]
+    print(x)
     print(Merge.crescent_sort(x, 0, len(x)-1))

@@ -9,6 +9,8 @@ from Selection.Selection import Selection
 from Insertion.Insertion import Insertion
 from Shell.Shell import Shell
 from Quick.Quick import Quick
+from Merge.Merge import Merge
+
 
 class SortAlgorithmTester:
 
@@ -18,10 +20,10 @@ class SortAlgorithmTester:
         return x
 
     def time_it(self, algorithm, algorithm_name, random_list, instance_size, label=None) -> dict:
-        if algorithm_name == "Quick":
+        if algorithm_name in ["Quick", "Merge"]:
             start = time.time()
             algorithm(random_list, 0, instance_size-1)
-            end = time.time()    
+            end = time.time()
         else:
             start = time.time()
             algorithm(random_list, instance_size)
@@ -193,6 +195,8 @@ class SortAlgorithmTester:
     def plot_data(self, data_list, title, ylabel, xlabel, filename, workers=None) -> None:
         ###### Plotar os dados ###############
         fig, ax = plt.subplots()
+        ax.yaxis.set_major_formatter(formater)
+        ax.xaxis.set_major_formatter(formater)
         ax.set_ylabel(ylabel)
         ax.set_xlabel(xlabel)
         ax.set_title(title)
@@ -206,6 +210,10 @@ class SortAlgorithmTester:
         ax.legend()
         fig.savefig(f'{filename}.png')
         ######################################
+
+
+def formater(x, pos):
+    return '{:1.0f}'.format(x*1)
 
 
 if __name__ == "__main__":
@@ -257,14 +265,16 @@ if __name__ == "__main__":
                         Selection.crescent_selection,
                         Insertion.direct_crescent_insertion,
                         Shell.crescent_shell,
-                        Quick.crescent_quick
+                        Quick.crescent_quick,
+                        Merge.crescent_sort
                     ],
                     [
                         "Bubble",
                         "Selection",
                         "Insertion",
                         "Shell",
-                        "Quick"
+                        "Quick",
+                        "Merge"
                     ],
                     [
                         1000,
@@ -274,7 +284,9 @@ if __name__ == "__main__":
                         5000,
                         8000,
                         11000,
-                        15000
+                        15000,
+                        50000,
+                        100000,
                     ]
                 )
             else:
@@ -300,7 +312,9 @@ if __name__ == "__main__":
                         5000,
                         8000,
                         11000,
-                        15000
+                        15000,
+                        50000,
+                        100000,
                     ],
                     [
                         Bubble.worst_case,
@@ -321,14 +335,16 @@ if __name__ == "__main__":
                         Selection.crescent_selection,
                         Insertion.direct_crescent_insertion,
                         Shell.crescent_shell,
-                        Quick.crescent_quick
+                        Quick.crescent_quick,
+                        Merge.crescent_sort
                     ],
                     [
                         "Bubble",
                         "Selection",
                         "Insertion",
                         "Shell",
-                        "Quick"
+                        "Quick",
+                        "Merge"
                     ],
                     [
                         1000,
@@ -338,7 +354,9 @@ if __name__ == "__main__":
                         5000,
                         8000,
                         11000,
-                        15000
+                        15000,
+                        50000,
+                        100000,
                     ]
                 )
             else:
@@ -364,7 +382,9 @@ if __name__ == "__main__":
                         5000,
                         8000,
                         11000,
-                        15000
+                        15000,
+                        50000,
+                        100000,
                     ],
                     [
                         Bubble.worst_case,
