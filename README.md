@@ -27,6 +27,7 @@ pip install -r requirements.txt
 | [Selection Sort](./Selection) |
 | [Insertion Sort](./Insertion) |
 | [Shell Sort](./Shell) |
+| [Quick Sort](./Quick) |
 
 # Comparing the algorithms
 
