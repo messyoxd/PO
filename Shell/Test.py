@@ -108,12 +108,12 @@ class SortAlgorithmTester:
                 self.plot_in_lines_threaded(
                     data_list[i][0], ax, data_list[i][1])
             ax.legend()
-            fig.savefig(f'InsertionSort{workers}Threads.png')
+            fig.savefig(f'ShellSort{workers}Threads.png')
         else:
             for i in range(len(data_list)):
                 self.plot_in_lines(data_list[i][0], ax, data_list[i][1])
             ax.legend()
-            fig.savefig(f'InsertionSortSingleThread.png')
+            fig.savefig(f'ShellSortSingleThread.png')
         ######################################
 
 
