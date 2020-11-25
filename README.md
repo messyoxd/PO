@@ -30,6 +30,7 @@ pip install -r requirements.txt
 | [Quick Sort](./Quick) |
 | [Merge Sort](./Merge) |
 | [Heap Sort](./Heap) |
+| [Bucket Sort](./Bucket) |
 
 # Comparing the algorithms
 

@@ -10,19 +10,33 @@ from Insertion.Insertion import Insertion
 from Shell.Shell import Shell
 from Quick.Quick import Quick
 from Merge.Merge import Merge
+from Heap.HeapBinario import HeapBinarioCrescente
+from Counting.CountingSort import CountingSort
 
 
 class SortAlgorithmTester:
 
     def create_random_list(self, size) -> list:
-        x = list(range(size))
-        random.shuffle(x)
-        return x
+        randomlist = []
+        for i in range(size):
+            n = random.randint(0,size-1)
+            randomlist.append(n)
+        return randomlist
 
     def time_it(self, algorithm, algorithm_name, random_list, instance_size, label=None) -> dict:
         if algorithm_name in ["Quick", "Merge"]:
             start = time.time()
             algorithm(random_list, 0, instance_size-1)
+            end = time.time()
+        elif algorithm_name == "CountingSort":
+            maior_elemento = max(random_list)
+            start = time.time()
+            algorithm(random_list, instance_size-1, maior_elemento)
+            end = time.time()
+        elif algorithm == "Heap":
+            heap = HeapBinarioCrescente()
+            start = time.time()
+            heap.heap_sort(random_list, instance_size)
             end = time.time()
         else:
             start = time.time()
@@ -261,32 +275,31 @@ if __name__ == "__main__":
                 start = time.time()
                 tester.algorithm_comparation_random_list_multi_thread(
                     [
-                        Bubble.crescent_sort,
-                        Selection.crescent_selection,
-                        Insertion.direct_crescent_insertion,
+                        # Bubble.crescent_sort,
+                        # Selection.crescent_selection,
+                        # Insertion.direct_crescent_insertion,
                         Shell.crescent_shell,
                         Quick.crescent_quick,
-                        Merge.crescent_sort
+                        Merge.crescent_sort,
+                        HeapBinarioCrescente.heap_sort,
+                        CountingSort.crescent_sort
                     ],
                     [
-                        "Bubble",
-                        "Selection",
-                        "Insertion",
+                        # "Bubble",
+                        # "Selection",
+                        # "Insertion",
                         "Shell",
                         "Quick",
-                        "Merge"
+                        "Merge",
+                        "Heap",
+                        "CountingSort"
                     ],
                     [
-                        1000,
-                        2000,
-                        3000,
-                        4000,
-                        5000,
-                        8000,
-                        11000,
-                        15000,
                         50000,
                         100000,
+                        500000,
+                        1000000,
+                        5000000,
                     ]
                 )
             else:
@@ -328,35 +341,35 @@ if __name__ == "__main__":
 
         else:
             if instance_type == "random":
+                heap = HeapBinarioCrescente()
                 start = time.time()
                 tester.algorithm_comparation_random_list_single_thread(
                     [
-                        Bubble.crescent_sort,
-                        Selection.crescent_selection,
-                        Insertion.direct_crescent_insertion,
-                        Shell.crescent_shell,
+                        # Bubble.crescent_sort,
+                        # Selection.crescent_selection,
+                        # Insertion.direct_crescent_insertion,
+                        # Shell.crescent_shell,
                         Quick.crescent_quick,
-                        Merge.crescent_sort
+                        Merge.crescent_sort,
+                        heap.heap_sort,
+                        CountingSort.crescent_sort
                     ],
                     [
-                        "Bubble",
-                        "Selection",
-                        "Insertion",
-                        "Shell",
+                        # "Bubble",
+                        # "Selection",
+                        # "Insertion",
+                        # "Shell",
                         "Quick",
-                        "Merge"
+                        "Merge",
+                        "Heap",
+                        "CountingSort"
                     ],
                     [
-                        1000,
-                        2000,
-                        3000,
-                        4000,
-                        5000,
-                        8000,
-                        11000,
-                        15000,
                         50000,
                         100000,
+                        500000,
+                        1000000,
+                        5000000,
                     ]
                 )
             else:
