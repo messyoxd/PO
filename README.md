@@ -31,6 +31,7 @@ pip install -r requirements.txt
 | [Merge Sort](./Merge) |
 | [Heap Sort](./Heap) |
 | [Bucket Sort](./Bucket) |
+| [Radix Sort](./Radix) |
 
 # Comparing the algorithms
 
