@@ -10,7 +10,7 @@ class HeapBinarioCrescente:
     def insere(self, dado):
         self.ultima = self.ultima + 1
         i = self.ultima
-        while i > 1 and self.vetor[(i//2)-1] > dado:
+        while i > 1 and self.vetor[(i//2)-1] >= dado:
             if len(self.vetor) > i:
                 self.vetor[i-1] = self.vetor[(i//2)-1]
             else:
@@ -28,20 +28,22 @@ class HeapBinarioCrescente:
         self.vetor[0] = self.vetor[self.ultima-1]
         self.ultima -= 1
         i = 1
-        while ((2*i)-1 <= self.ultima and self.vetor[i-1] > self.vetor[(2*i)-1]) or ((2*i)-1 < self.ultima and self.vetor[i-1] > self.vetor[2*i]):
+        while ((2*i)-1 <= self.ultima-1 and self.vetor[i-1] > self.vetor[(2*i)-1]) or ((2*i)-1 < self.ultima-1 and self.vetor[i-1] > self.vetor[(2*i)]):
             menor = (2*i)-1
-            if (2*i)-1 < self.ultima and self.vetor[2*i] <= self.vetor[(2*i)-1]:
+            if (2*i)-1 < self.ultima-1 and self.vetor[(2*i)] < self.vetor[(2*i)-1]:
                 menor += 1
             self.vetor[i-1], self.vetor[menor] = self.vetor[menor], self.vetor[i-1]
-            i = menor
+            i = menor+1
         self.vetor = self.vetor[:-1]
         return valor
 
-    def heap_sort(self, lista, lista_size):
+    @staticmethod
+    def heap_sort(lista, lista_size):
+        heap = HeapBinarioCrescente()
         for i in range(lista_size):
-            self.insere(lista[i])
+            heap.insere(lista[i])
         for i in range(lista_size):
-            lista[i] = self.remove_menor_elemento()
+            lista[i] = heap.remove_menor_elemento()
         return lista
 
 class HeapBinarioDecrescente:
@@ -70,20 +72,22 @@ class HeapBinarioDecrescente:
         self.vetor[0] = self.vetor[self.ultima-1]
         self.ultima -= 1
         i = 1
-        while ((2*i)-1 <= self.ultima and self.vetor[i-1] < self.vetor[(2*i)-1]) or ((2*i)-1 < self.ultima and self.vetor[i-1] < self.vetor[2*i]):
+        while ((2*i)-1 <= self.ultima-1 and self.vetor[i-1] < self.vetor[(2*i)-1]) or ((2*i)-1 < self.ultima-1 and self.vetor[i-1] < self.vetor[2*i]):
             maior = (2*i)-1
-            if (2*i)-1 < self.ultima and self.vetor[2*i] >= self.vetor[(2*i)-1]:
+            if (2*i)-1 < self.ultima-1 and self.vetor[(2*i)] > self.vetor[(2*i)-1]:
                 maior += 1
             self.vetor[i-1], self.vetor[maior] = self.vetor[maior], self.vetor[i-1]
-            i = maior
+            i = maior+1
         self.vetor = self.vetor[:-1]
         return valor
 
-    def heap_sort(self, lista, lista_size):
+    @staticmethod
+    def heap_sort(lista, lista_size):
+        heap = HeapBinarioDecrescente()
         for i in range(lista_size):
-            self.insere(lista[i])
+            heap.insere(lista[i])
         for i in range(lista_size):
-            lista[i] = self.remove_maior_elemento()
+            lista[i] = heap.remove_maior_elemento()
         return lista
 
 def return_random_list(size):
@@ -94,19 +98,17 @@ def return_random_list(size):
     return randomlist
 
 if __name__ == "__main__":
-    instance_size = 5000000
-    # x = list(range(s))[::-1]
-    # random.shuffle(x)
-    list1 = return_random_list(instance_size)
-    list2 = return_random_list(instance_size)
-    heap=HeapBinarioDecrescente()
-    start = time.time()
-    result = max(list1)
-    end = time.time()
-    print(f"max -> {result} segundos: %.3f" %(end - start))
-    for i in list2:
-        heap.insere(i)
-    start = time.time()
-    result = heap.remove_maior_elemento()
-    end = time.time()
-    print(f"max -> {result} segundos: %.3f" %(end - start))
+    x = return_random_list(40)
+    # x = [2, 4, 3, 9, 9, 7, 9, 3, 4, 5]
+    min_heap = HeapBinarioCrescente()
+    for i in x:
+        min_heap.insere(i)
+    print(f"array -> {x}")
+    print(f"menor elemento -> {min_heap.remove_menor_elemento()}")
+    max_heap = HeapBinarioDecrescente()
+    for i in x:
+        max_heap.insere(i)
+    print(f"maior elemento -> {max_heap.remove_maior_elemento()}")
+    print(f"ordem crescente -> {HeapBinarioCrescente.heap_sort(x, len(x))}")
+    print(f"ordem decrescente -> {HeapBinarioDecrescente.heap_sort(x, len(x))}")
+    
